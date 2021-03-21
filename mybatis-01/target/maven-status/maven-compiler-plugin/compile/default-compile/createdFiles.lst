@@ -1,3 +1,3 @@
 com\xinzhe\utils\MybatisUtils.class
-com\xinzhe\dao\UserDao.class
+com\xinzhe\dao\UserMapper.class
 com\xinzhe\pojo\User.class
