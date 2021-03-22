@@ -14,7 +14,6 @@ public class TeacherMapperTest {
     private SqlSession sqlSession;
     private TeacherMapper mapper;
 
-
     @Before
     public void setUp(){
         sqlSession = MybatisUtils.getSqlSession();
@@ -29,6 +28,22 @@ public class TeacherMapperTest {
     @Test
     public void testALlTeacher(){
         List<Teacher> allTeacher = mapper.getAllTeacher();
+        for (Teacher teacher : allTeacher) {
+            System.out.println(teacher);
+        }
+    }
+
+    @Test
+    public void testALlTeacherById(){
+        List<Teacher> allTeacher = mapper.getAllTeacherById(1);
+        for (Teacher teacher : allTeacher) {
+            System.out.println(teacher);
+        }
+    }
+
+    @Test
+    public void testALlTeacherById2(){
+        List<Teacher> allTeacher = mapper.getTeacher2(1);
         for (Teacher teacher : allTeacher) {
             System.out.println(teacher);
         }

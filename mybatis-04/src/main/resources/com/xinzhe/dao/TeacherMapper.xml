@@ -8,4 +8,35 @@
         select * from mybatis.teacher;
     </select>
 
+    <select id="getAllTeacherById" resultMap="TeacherStudent">
+        select s.id sid, s.name sname, t.name tname, t.id tid
+        from teacher t, student s
+        where s.tid = t.id and t.id = #{tid};
+    </select>
+
+    <resultMap id="TeacherStudent" type="Teacher">
+        <result property="id"   column="tid"/>
+        <result property="name" column="tname"/>
+        <!--  ofType  内存类型      -->
+        <collection property="students" ofType="Student" >
+            <result property="id" column="sid"/>
+            <result property="name" column="sname"/>
+            <result property="tid" column="tid"/>
+        </collection>
+    </resultMap>
+
+    <select id="getTeacher2" resultMap="TeacherStudent2">
+        select * from teacher where id = #{tid}
+    </select>
+
+    <select id="getStudent" resultType="Student">
+        select * from student where tid = #{id}
+    </select>
+
+    <resultMap id="TeacherStudent2" type="Teacher">
+        <!--  javaType  外层类型      -->
+        <!--  ofType  内存类型      -->
+        <collection property="students" javaType="ArrayList" ofType="Student" select="getStudent" column="id"/>
+    </resultMap>
+
 </mapper>
